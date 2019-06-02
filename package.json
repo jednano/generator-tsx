@@ -152,7 +152,8 @@
     "precover": "rimraf coverage && npm run build",
     "cover": "jest --coverage",
     "prepublishOnly": "npm run build",
-    "commit": "git-cz"
+    "commit": "git-cz",
+    "foo": "bar"
   },
   "husky": {
     "hooks": {
