@@ -3,7 +3,7 @@ import { DeepPartial } from 'redux'
 import { createMockEnvironment, MockPayloadGenerator } from 'relay-test-utils'
 
 import RootState from 'store/RootState'
-import { renderWithRedux } from 'utils/test'
+import { render as _render } from 'utils/test'
 
 import Home, { HomeProps } from '.'
 
@@ -46,7 +46,7 @@ describe(Home.name, () => {
 		props?: Partial<HomeProps>
 		state?: DeepPartial<RootState>
 	} = {}) {
-		return renderWithRedux(
+		return _render(
 			<Home
 				{...{
 					...defaultProps,

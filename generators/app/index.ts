@@ -211,14 +211,12 @@ export = class AppGenerator extends Generator {
 	}
 
 	public install() {
-		const { css, graphqlClient } = { ...this.options, ...this.answers }
+		const { css, graphqlClient, redux } = { ...this.options, ...this.answers }
 		const deps = [
 			'@loadable/component@^5',
-			'@queso/camel-case@^0',
 			'@queso/kebab-case@^1',
 			'@reach/router@^1',
 			'full-icu@^1',
-			'immer@^4',
 			'ky@^0',
 			'ky-universal@^0',
 			'pathjoin@^0',
@@ -226,14 +224,20 @@ export = class AppGenerator extends Generator {
 			'react-dom@^16',
 			'react-helmet-async@^1',
 			'react-intl@^3',
-			'react-redux@^7',
 			'react-theme-context@^2',
-			'redux@^4',
-			'redux-thunk@^2',
 			'tslib@^1',
 		]
+		if (redux) {
+			deps.push(
+				'@queso/camel-case@^0',
+				'immer@^4',
+				'react-redux@^7',
+				'redux@^4',
+				'redux-thunk@^2',
+			)
+		}
 		if (graphqlClient === 'relay') {
-			deps.push(...['babel-plugin-relay@^5', 'react-relay@^5'])
+			deps.push('babel-plugin-relay@^5', 'react-relay@^5')
 		}
 		this.spawnCommandSync('git', ['init', '--quiet'])
 		this.npmInstall(deps, {
@@ -241,7 +245,6 @@ export = class AppGenerator extends Generator {
 		})
 		const devDeps = [
 			'@craco/craco@^5',
-			'@jedmao/redux-mock-store@^2',
 			'@jedmao/storage@^2',
 			'@jedmao/tsconfig',
 			'@testing-library/react@^9',
@@ -252,9 +255,7 @@ export = class AppGenerator extends Generator {
 			'@types/reach__router@^1',
 			'@types/react@^16',
 			'@types/react-dom@^16',
-			'@types/react-redux@^7',
 			'@types/react-router-dom@^4',
-			'@types/redux-logger@^3',
 			'@types/webpack-env@^1',
 			'concurrently@^4',
 			'cross-env@^5',
@@ -264,12 +265,18 @@ export = class AppGenerator extends Generator {
 			'lint-staged@^9',
 			'prettier@^1',
 			'react-scripts@^3',
-			'redux-devtools-extension@^2',
-			'redux-logger@^3',
 			'rimraf@^3',
-			'ts-essentials@^3',
 			'typescript@^3',
 		]
+		if (redux) {
+			devDeps.push(
+				'@jedmao/redux-mock-store@^2',
+				'@types/react-redux@^7',
+				'@types/redux-logger@^3',
+				'redux-devtools-extension@^2',
+				'redux-logger@^3',
+			)
+		}
 		if (graphqlClient === 'relay') {
 			devDeps.push(
 				...[

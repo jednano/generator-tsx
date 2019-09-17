@@ -1,30 +1,26 @@
 import RootActions from 'actions'
+import { Immutable } from 'immer'
+import { Reducer } from 'redux'
 
 export default async function testReducer<T, A extends RootActions>(
-	reducer: (state: Readonly<T> | undefined, action: A) => Readonly<T>,
+	reducer: Reducer<Immutable<T>, A>,
 	callback: (test: typeof testReducer) => void,
 ) {
 	describe(reducer.name, () => {
-		it('returns initial state', () => {
-			expect(reducer(undefined, {} as any)).toMatchSnapshot()
-		})
 		callback(testReducer)
 	})
 
 	function testReducer(
-		initialState: Partial<T> | undefined | null,
+		previousState: Immutable<T>,
 		action: A,
-		expectedState: Partial<T> | ((newState: Readonly<T>) => void),
+		expectedState: Immutable<T> | ((newState: Immutable<T>) => void),
 		customItName?: string,
 	) {
 		it(customItName || `handles ${action.type}`, () => {
 			expect.hasAssertions()
-			const newState = reducer(
-				(initialState as Readonly<T>) || void 0,
-				action,
-			)
+			const newState = reducer(previousState, action)
 			if (typeof expectedState === 'function') {
-				expectedState(newState)
+				;(expectedState as ((newState: Immutable<T>) => void))(newState)
 				return
 			}
 			expect(newState).toEqual(expect.objectContaining(expectedState))

@@ -20,6 +20,7 @@ export interface Answers extends Generator.Answers {
 	version: string
 	graphqlClient: 'relay' | false
 	css: 'linaria' | 'modules'
+	redux: true | false
 }
 
 interface Input<T = string>
@@ -77,6 +78,14 @@ export default [
 			return this.user.git.email()
 		},
 	} as Input,
+	{
+		type: true,
+		name: 'redux',
+		alias: 'r',
+		description: 'React Redux',
+		default: false,
+		store: true,
+	} as Input<Boolean>,
 	{
 		type: ['modules', 'linaria'],
 		name: 'css',

@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { renderWithRouter } from 'utils/test'
+import { render as _render } from 'utils/test'
 
 import App from '.'
 
@@ -12,6 +12,6 @@ describe(App.name, () => {
 	})
 
 	function render() {
-		return renderWithRouter(<App />)
+		return _render(<App />)
 	}
 })

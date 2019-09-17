@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { renderWithRedux } from 'utils/test'
+import { render as _render } from 'utils/test'
 
 import Layout from '.'
 
@@ -10,6 +10,6 @@ describe('Layout component', () => {
 	})
 
 	function render() {
-		return renderWithRedux(<Layout />)
+		return _render(<Layout />)
 	}
 })

@@ -2,7 +2,7 @@ import React from 'react'
 import { DeepPartial } from 'redux'
 
 import RootState from 'store/RootState'
-import { renderWithRedux } from 'utils/test'
+import { render as _render } from 'utils/test'
 
 import QuxQuux, { QuxQuuxProps } from '.'
 
@@ -22,6 +22,6 @@ describe('QuxQuux', () => {
 		props?: Partial<QuxQuuxProps>
 		state?: DeepPartial<RootState>
 	} = {}) {
-		return renderWithRedux(<QuxQuux {...defaultProps} {...props} />, { state })
+		return _render(<QuxQuux {...defaultProps} {...props} />, { state })
 	}
 })

@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { renderWithRedux } from 'utils/test'
+import { render as _render } from 'utils/test'
 
 import Spinner from '.'
 
@@ -12,6 +12,6 @@ describe(Spinner.name, () => {
 	})
 
 	function render() {
-		return renderWithRedux(<Spinner />)
+		return _render(<Spinner />)
 	}
 })

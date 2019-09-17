@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { renderWithRedux } from 'utils/test'
+import { render as _render } from 'utils/test'
 
 import NotFound from '.'
 
@@ -12,6 +12,6 @@ describe(NotFound.name, () => {
 	})
 
 	function render() {
-		return renderWithRedux(<NotFound />)
+		return _render(<NotFound />)
 	}
 })

@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { renderWithRedux } from 'utils/test'
+import { render as _render } from 'utils/test'
 
 import Nav from '.'
 
@@ -18,6 +18,6 @@ describe(Nav.name, () => {
 	})
 
 	function render() {
-		return renderWithRedux(<Nav />)
+		return _render(<Nav />)
 	}
 })

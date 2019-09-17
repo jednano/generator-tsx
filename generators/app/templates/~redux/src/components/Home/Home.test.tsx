@@ -1,5 +1,7 @@
 import React from 'react'
+import { DeepPartial } from 'redux'
 
+import RootState from 'store/RootState'
 import { render as _render } from 'utils/test'
 
 import Home from '.'
@@ -11,7 +13,13 @@ describe(Home.name, () => {
 		expect(rendered.getByAltText('logo')).toBeDefined()
 	})
 
-	function render() {
-		return _render(<Home />)
+	function render({
+		state = {},
+	}: {
+		state?: DeepPartial<RootState>
+	} = {}) {
+		return _render(<Home />, {
+			state,
+		})
 	}
 })

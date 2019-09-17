@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { renderWithRedux, wait } from 'utils/test'
+import { render as _render, wait } from 'utils/test'
 
 import About from '.'
 
@@ -14,6 +14,6 @@ describe(About.name, () => {
 	})
 
 	function render() {
-		return renderWithRedux(<About />)
+		return _render(<About />)
 	}
 })
